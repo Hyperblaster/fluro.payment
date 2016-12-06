@@ -20,11 +20,24 @@ module.exports = function(grunt) {
                 tasks: ['compile'],
             }
         },
+
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            app: {
+                files: {
+                    'dist/fluro.payment.js': ['dist/fluro.payment.js'],
+                }
+            }
+        },
+
+
         ngtemplates: {
             'fluro.payment': {
                 cwd: './lib/html',
                 src: 'fluro/**/*.html',
-                dest: 'dist/fluro-payment-templates.js',
+                dest: 'dist/fluro.payment-templates.js',
                 options: {
                     htmlmin: {
                         collapseBooleanAttributes: true,
@@ -44,17 +57,30 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: ['lib/js/**/*.js'],
-                dest: 'dist/fluro-payment.js',
+                dest: 'dist/fluro.payment.js',
             }
         },
+
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            app: {
+                files: {
+                    'dist/fluro.payment.js': ['dist/fluro.payment.js'],
+                }
+            }
+        },
+
+
         uglify: {
             options: {
                 mangle: false
             },
             build: {
                 src: [
-                    'dist/fluro-payment.js',
-                    'dist/fluro-payment-templates.js'
+                    'dist/fluro.payment.js',
+                    'dist/fluro.payment-templates.js'
                 ],
                 dest: 'dist/fluro.payment.min.js'
             }
@@ -63,7 +89,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
     //grunt.registerTask('build', ['copy:build', 'htmlmin:build', 'uglify:build', 'cssmin:build']);
-    grunt.registerTask('compile', ['ngtemplates', 'concat', 'uglify']);
+    grunt.registerTask('compile', ['ngtemplates', 'concat','ngAnnotate', 'uglify']);
 
     //'autoprefixer', 'cssmin'
 

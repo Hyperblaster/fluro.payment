@@ -3,7 +3,7 @@ angular.module('fluro.payment',['fluro.config'])
 'use strict';
 angular.module('fluro.payment')
 
-.service('FluroPaymentService', function($http, Fluro) {
+.service('FluroPaymentService', ['$http', 'Fluro', function($http, Fluro) {
 
     var controller = {};
 
@@ -29,4 +29,4 @@ angular.module('fluro.payment')
 
     return controller;
 
-});
+}]);
